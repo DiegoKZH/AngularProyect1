@@ -1,0 +1,23 @@
+<section style="padding: 2rem;">
+  <h2>Lista de Usuarios</h2>
+
+  <div style="margin-bottom: 1rem;">
+    <input 
+      type="text" 
+      placeholder="Buscar usuario..." 
+      [(ngModel)]="filtro"
+    />
+  </div>
+
+  <ul>
+    <li *ngFor="let persona of usuariosFiltrados; let i = index">
+      {{ i + 1 }} - {{ persona.nombre }}
+      
+      <button (click)="eliminarPersona(persona.nombre)" style="margin-left: 10px;">
+        Eliminar
+      </button>
+    </li>
+  </ul>
+
+  <p *ngIf="usuariosFiltrados.length === 0">Ya no queda usuarios :(</p>
+</section>
