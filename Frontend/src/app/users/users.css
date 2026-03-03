@@ -1,0 +1,9 @@
+:host{display:block}
+.users-container{max-width:980px;margin:1rem auto;padding:1rem}
+.users-actions{display:flex;gap:.6rem;align-items:center;margin-bottom:1rem}
+.users-form{display:flex;gap:.5rem;align-items:center}
+.users-form input{padding:.5rem;border:1px solid #e6e9ef;border-radius:6px}
+.users-list{margin-top:1rem}
+.users-list .item{display:flex;align-items:center;justify-content:space-between;padding:.6rem;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);margin-bottom:.5rem}
+.users-list .meta{color:var(--muted);font-size:.9rem}
+

@@ -1,0 +1,7 @@
+.user-list{padding:1rem}
+.user-list h2{margin:0 0 .6rem 0}
+.user-list input{width:100%;padding:.5rem;border-radius:6px;border:1px solid #e6e9ef}
+.user-list ul{list-style:none;padding:0;margin:0;margin-top:.75rem}
+.user-list li{display:flex;align-items:center;justify-content:space-between;padding:.55rem;border-radius:6px;background:linear-gradient(180deg,rgba(0,0,0,0.01),transparent);margin-bottom:.5rem}
+.user-list .actions{display:flex;gap:.5rem}
+.user-list button{padding:.3rem .5rem;border-radius:6px;border:1px solid rgba(0,0,0,0.06);background:transparent;cursor:pointer}

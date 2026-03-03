@@ -1,0 +1,16 @@
+.login-card{
+  max-width:420px;
+  margin:2rem auto;
+  padding:1.25rem;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  background:linear-gradient(180deg,#fff,#fafafa);
+}
+.login-card h2{margin:0 0 1rem 0}
+.field{margin-bottom:.85rem;display:flex;flex-direction:column}
+.field label{font-size:.85rem;margin-bottom:.25rem;color:#333}
+.field input{padding:.5rem;border:1px solid #ddd;border-radius:6px}
+.actions{display:flex;gap:.6rem;margin-top:.6rem}
+.primary{background:#2b8cff;color:#fff;border:none;padding:.5rem .9rem;border-radius:6px;cursor:pointer}
+.muted{background:transparent;border:1px solid #ddd;padding:.45rem .75rem;border-radius:6px;cursor:pointer}
+.error{color:#b00020;margin-top:.6rem}

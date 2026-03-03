@@ -1,21 +1,27 @@
-<section style="padding: 2rem;">
+<section class="user-list">
   <h2>Lista de Usuarios</h2>
 
-  <div style="margin-bottom: 1rem;">
-    <input 
-      type="text" 
-      placeholder="Buscar usuario..." 
+  <div class="search" style="margin-bottom:.75rem">
+    <input
+      type="text"
+      placeholder="Buscar usuario..."
       [(ngModel)]="filtro"
     />
   </div>
 
   <ul>
-    <li *ngFor="let persona of usuariosFiltrados; let i = index">
-      {{ i + 1 }} - {{ persona.nombre }}
-      
-      <button (click)="eliminarPersona(persona.nombre)" style="margin-left: 10px;">
-        Eliminar
-      </button>
+    <li *ngFor="let persona of usuariosFiltrados; let i = index" class="item">
+      <div>
+        {{ i + 1 }} - {{ persona.nombre }}
+        <small *ngIf="persona?.raw?.role" style="margin-left:8px; color:gray;">
+          [{{ persona.raw.role }}]
+        </small>
+      </div>
+      <div class="actions">
+        <button (click)="eliminarPersona(persona)" class="btn ghost">Eliminar</button>
+        <button (click)="editarPersona(persona)" class="btn ghost">Editar</button>
+        <button (click)="seleccionarPersona(persona.nombre)" class="btn">Ver detalle</button>
+      </div>
     </li>
   </ul>
 

@@ -1,0 +1,58 @@
+<section class="users-container">
+  <h2>Users</h2>
+  <form #createForm="ngForm" (ngSubmit)="create()" class="users-actions">
+    <div class="users-form">
+      <input name="name" required minlength="6" [(ngModel)]="newName" #nameCtrl="ngModel" placeholder="Nombre" />
+      <input name="email" required email [(ngModel)]="newEmail" #emailCtrl="ngModel" placeholder="email@ejemplo.com" />
+      <input name="role" [(ngModel)]="newRole" placeholder="Rol (admin/user)" />
+      <button type="submit" class="btn">Crear usuario (POST)</button>
+    </div>
+    <div>
+      <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched || createForm.submitted)" style="color:crimson;">
+        <span *ngIf="nameCtrl.errors?.['required']">Nombre es requerido.</span>
+        <span *ngIf="nameCtrl.errors?.['minlength']">Mínimo 6 caracteres.</span>
+      </div>
+      <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched || createForm.submitted)" style="color:crimson;">
+        <span *ngIf="emailCtrl.errors?.['required']">Email es requerido.</span>
+        <span *ngIf="emailCtrl.errors?.['email']">Email inválido.</span>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="loading">Cargando usuarios...</div>
+  <div *ngIf="error" style="color:crimson;">{{ error }}</div>
+
+  <!-- Edit form -->
+  <div *ngIf="editingUser" class="card" style="margin-bottom:12px;">
+    <h3>Editar usuario</h3>
+    <form #editForm="ngForm" (ngSubmit)="saveEdit()">
+      <div class="row">
+        <div style="flex:1">
+          <input name="editName" required minlength="6" [(ngModel)]="editModel.name" #editNameCtrl="ngModel" placeholder="Nombre" />
+          <div *ngIf="editNameCtrl.invalid && (editNameCtrl.dirty || editNameCtrl.touched || editForm.submitted)" style="color:crimson;">
+            <span *ngIf="editNameCtrl.errors?.['required']">Nombre es requerido.</span>
+            <span *ngIf="editNameCtrl.errors?.['minlength']">Mínimo 6 caracteres.</span>
+          </div>
+        </div>
+        <div style="flex:1">
+          <input name="editEmail" required email [(ngModel)]="editModel.email" #editEmailCtrl="ngModel" placeholder="Email" />
+          <div *ngIf="editEmailCtrl.invalid && (editEmailCtrl.dirty || editEmailCtrl.touched || editForm.submitted)" style="color:crimson;">
+            <span *ngIf="editEmailCtrl.errors?.['required']">Email es requerido.</span>
+            <span *ngIf="editEmailCtrl.errors?.['email']">Email inválido.</span>
+          </div>
+        </div>
+        <div style="flex:1">
+          <input name="editRole" [(ngModel)]="editModel.role" placeholder="Rol" />
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <button type="submit" class="btn">Guardar</button>
+        <button type="button" (click)="cancelEdit()" class="btn ghost" style="margin-left:8px;">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <app-user-list [users]="users" (selected)="onSelected($event)" (deleted)="onDeleted($event)" (edit)="startEdit($event)"></app-user-list>
+</section>
+
