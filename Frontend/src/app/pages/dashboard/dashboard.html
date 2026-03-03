@@ -1,0 +1,16 @@
+<section class="dashboard">
+  <h2>Dashboard</h2>
+  <p *ngIf="user()">Bienvenido, <strong>{{ user()?.username }}</strong></p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Usuarios</h3>
+      <p>Gestiona usuarios desde la sección Users.</p>
+      <a routerLink="/users">Ir a Users</a>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem">
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+</section>

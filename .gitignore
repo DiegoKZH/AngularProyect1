@@ -1,0 +1,79 @@
+# Dependencies
+node_modules/
+packages/
+
+# Build outputs
+dist/
+build/
+bin/
+obj/
+.angular/
+coverage/
+
+# Environment variables (no guardes .env con valores reales)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.idea/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.seed
+*.db
+*.sqlite
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+dist/
+
+# Testing
+.nyc_output/
+coverage/
+test-results/
+
+# Docker (para desarrollo local)
+.dockerignore
+Dockerfile
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Visual Studio
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+.vs/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+# Others
+.env.example
+.gitignore
+docker-compose.yml
+docker-utils.ps1
+init_data.sql
+proyect1.sln
+RADME_DOCKER.md

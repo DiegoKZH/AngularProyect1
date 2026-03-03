@@ -1,0 +1,5 @@
+INSERT INTO "Users" ("Name", "Email", "Role") 
+VALUES 
+  ('Diego Rodríguez', 'diego@example.com', 'admin'),
+  ('Juan García', 'juan@example.com', 'user'),
+  ('Ana López', 'ana@example.com', 'user');

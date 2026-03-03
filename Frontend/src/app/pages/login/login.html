@@ -1,0 +1,20 @@
+<section class="login-card">
+  <h2>Login (falso)</h2>
+
+  <div class="field">
+    <label>Usuario</label>
+    <input type="text" [(ngModel)]="username" placeholder="Tu nombre" />
+  </div>
+
+  <div class="field">
+    <label>Contraseña</label>
+    <input type="password" [(ngModel)]="password" placeholder="Contraseña (no usada)" />
+  </div>
+
+  <div class="actions">
+    <button (click)="login()" class="primary">Entrar</button>
+    <button (click)="cancel()" class="muted">Cancelar</button>
+  </div>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+</section>

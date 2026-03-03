@@ -1,0 +1,5 @@
+.dashboard{max-width:800px;margin:1.5rem auto;padding:1rem}
+.cards{display:flex;gap:1rem}
+.card{flex:1;padding:1rem;border-radius:8px;border:1px solid #eee;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.03)}
+.card h3{margin:0 0 .5rem 0}
+.card a{color:#2b8cff;text-decoration:none}

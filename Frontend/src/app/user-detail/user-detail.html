@@ -1,0 +1,10 @@
+<section class="user-detail">
+  <div class="card">
+    <h2>Detalle de User</h2>
+    <p *ngIf="name">Nombre: <strong>{{ name }}</strong></p>
+    <p *ngIf="!name">No se recibió nombre por parámetro.</p>
+    <div style="margin-top:.75rem">
+      <button (click)="back()" class="btn ghost">Volver a Users</button>
+    </div>
+  </div>
+</section>

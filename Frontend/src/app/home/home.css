@@ -1,0 +1,5 @@
+:host{display:block}
+.home-hero{max-width:900px;margin:1.5rem auto;padding:1.25rem;text-align:center}
+.home-hero h1{font-size:2rem;margin:0 0 .5rem}
+.home-hero p{color:var(--muted);margin:0}
+
