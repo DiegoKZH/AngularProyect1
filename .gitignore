@@ -70,10 +70,10 @@ obj/
 .vscode/
 *.code-workspace
 # Others
-.env.example
-.gitignore
-docker-compose.yml
-docker-utils.ps1
-init_data.sql
-proyect1.sln
-RADME_DOCKER.md
+#.env.example
+#.gitignore
+#docker-compose.yml
+#docker-utils.ps1
+#init_data.sql
+#proyect1.sln
+#RADME_DOCKER.md
