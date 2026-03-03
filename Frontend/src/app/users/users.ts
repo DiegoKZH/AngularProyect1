@@ -21,8 +21,9 @@ export class UsersComponent implements OnInit {
   newName = '';
   newEmail = '';
   newRole = '';
+  newPassword = '';
 
-  // edit state
+  // edit state (password editing disabled)
   editingUser: any | null = null;
   editModel: { id?: number; name: string; email: string; role?: string } = { name: '', email: '', role: '' };
 
@@ -82,6 +83,9 @@ export class UsersComponent implements OnInit {
     // basic client-side guard
     if (!this.newName.trim() || !this.newEmail.trim()) return;
     const payload = { name: this.newName, email: this.newEmail, role: this.newRole };
+    if (this.newPassword && this.newPassword.trim()) {
+      (payload as any).password = this.newPassword;
+    }
     this.api.createUser(payload).subscribe({
       next: (res) => {
         // jsonplaceholder returns the created resource with an id
@@ -89,6 +93,7 @@ export class UsersComponent implements OnInit {
         this.newName = '';
         this.newEmail = '';
         this.newRole = '';
+        this.newPassword = '';
       },
       error: (err) => {
         this.error = err?.message || 'Error creando usuario';
@@ -127,7 +132,7 @@ export class UsersComponent implements OnInit {
           this.users[idx] = { nombre: res.name, raw: res };
         }
         this.editingUser = null;
-        this.editModel = { name: '', email: '' };
+        this.editModel = { name: '', email: '', role: '' };
       },
       error: (err) => {
         this.error = err?.message || 'Error actualizando usuario';

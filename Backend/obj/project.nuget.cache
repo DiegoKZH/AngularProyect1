@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vhASlnQtibc=",
+  "dgSpecHash": "konmTNpgJ1M=",
   "success": true,
   "projectFilePath": "C:\\Users\\LENOVO\\Documents\\Proyect\\SUB-SUB-SUB\\proyect1\\Backend\\Proyect1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

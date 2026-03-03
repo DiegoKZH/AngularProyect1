@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Proyect1.Data;
 using Proyect1.Models;
+using BCrypt.Net;
 
 namespace Proyect1.Controllers
 {
@@ -32,20 +33,38 @@ namespace Proyect1.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Post(User user)
+        public async Task<ActionResult<User>> Post(UserInput input)
         {
+            var user = new User
+            {
+                Name = input.Name ?? string.Empty,
+                Email = input.Email ?? string.Empty,
+                Role = input.Role ?? "user"
+            };
+            if (!string.IsNullOrWhiteSpace(input.Password))
+            {
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(input.Password);
+            }
+
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, User user)
+        public async Task<IActionResult> Put(int id, UserInput input)
         {
-            if (id != user.Id)
-                return BadRequest();
+            var existing = await _db.Users.FindAsync(id);
+            if (existing == null) return NotFound();
 
-            _db.Entry(user).State = EntityState.Modified;
+            if (!string.IsNullOrWhiteSpace(input.Name)) existing.Name = input.Name;
+            if (!string.IsNullOrWhiteSpace(input.Email)) existing.Email = input.Email;
+            if (!string.IsNullOrWhiteSpace(input.Role)) existing.Role = input.Role;
+            if (!string.IsNullOrWhiteSpace(input.Password))
+            {
+                existing.PasswordHash = BCrypt.Net.BCrypt.HashPassword(input.Password);
+            }
+
             try
             {
                 await _db.SaveChangesAsync();

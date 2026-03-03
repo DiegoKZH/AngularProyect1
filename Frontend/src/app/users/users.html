@@ -5,6 +5,7 @@
       <input name="name" required minlength="6" [(ngModel)]="newName" #nameCtrl="ngModel" placeholder="Nombre" />
       <input name="email" required email [(ngModel)]="newEmail" #emailCtrl="ngModel" placeholder="email@ejemplo.com" />
       <input name="role" [(ngModel)]="newRole" placeholder="Rol (admin/user)" />
+      <input name="password" [(ngModel)]="newPassword" placeholder="Contraseña" />
       <button type="submit" class="btn">Crear usuario (POST)</button>
     </div>
     <div>
@@ -44,6 +45,7 @@
         <div style="flex:1">
           <input name="editRole" [(ngModel)]="editModel.role" placeholder="Rol" />
         </div>
+        <!-- password edit is disabled for now: not editable via UI -->
       </div>
 
       <div style="margin-top:8px;">

@@ -16,6 +16,9 @@
         <small *ngIf="persona?.raw?.role" style="margin-left:8px; color:gray;">
           [{{ persona.raw.role }}]
         </small>
+        <div *ngIf="persona?.raw?.passwordHash" style="font-family:monospace; font-size:0.8em; color:#666; margin-top:4px;">
+          Hash: {{ persona.raw.passwordHash }}
+        </div>
       </div>
       <div class="actions">
         <button (click)="eliminarPersona(persona)" class="btn ghost">Eliminar</button>

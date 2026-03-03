@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Base de Datos PostgreSQL (desarrollo)
+  postgres_dev:
+    image: postgres:16-alpine
+    container_name: proyect1_postgres_dev
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123456
+      POSTGRES_DB: proyect1_db_dev
+    ports:
+      - "5432:5432"    # mismo puerto local, cambiar en "main" más tarde
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - proyect1_network_dev
+
+  # Backend ASP.NET Core (desarrollo)
+  backend_dev:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: proyect1_backend_dev
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5156
+      CONNECTION_STRING: "Host=postgres_dev;Port=5432;Database=proyect1_db_dev;Username=admin;Password=admin123456"
+      CORS_ORIGINS: "http://localhost,http://localhost:80,http://frontend_dev"
+    ports:
+      - "5156:5156"
+    depends_on:
+      postgres_dev:
+        condition: service_healthy
+    volumes:
+      - ./Backend:/app/src
+    networks:
+      - proyect1_network_dev
+    restart: unless-stopped
+
+  # Frontend Angular (desarrollo)
+  frontend_dev:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: proyect1_frontend_dev
+    ports:
+      - "80:80"            # puerto web estándar para dev
+    depends_on:
+      - backend_dev
+    environment:
+      - API_URL=http://backend_dev:5156/api
+    networks:
+      - proyect1_network_dev
+    restart: unless-stopped
+
+volumes:
+  postgres_data_dev:
+
+networks:
+  proyect1_network_dev:
+    driver: bridge

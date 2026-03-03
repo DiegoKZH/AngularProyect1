@@ -70,6 +70,8 @@ obj/
 .vscode/
 *.code-workspace
 # Others
+insert_fake_users.sql
+INSERTAR_USUARIOS_GUIA.md
 #.env.example
 #.gitignore
 #docker-compose.yml
