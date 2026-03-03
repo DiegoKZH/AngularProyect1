@@ -54,7 +54,9 @@ services:
     depends_on:
       - backend_dev
     environment:
-      - API_URL=http://backend_dev:5156/api
+      - API_URL=http://backend_dev:5156
+      # API_URL debe ser el host+puerto sólo; nginx concatena el path correctamente
+      # (el prefijo /api se mantiene en la solicitud original)
     networks:
       - proyect1_network_dev
     restart: unless-stopped

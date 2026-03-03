@@ -18,8 +18,11 @@ RUN npm run build
 # Etapa 2: Nginx (Servir la aplicación)
 FROM nginx:alpine
 
-# Copiar configuración de Nginx
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy our nginx.conf into the templates directory so the official entrypoint
+# can perform variable substitution at container startup.
+# It will write the result to /etc/nginx/conf.d/nginx.conf which is included by
+# the default main configuration.
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 COPY --from=build /app/dist/Frontend/browser /usr/share/nginx/html
 

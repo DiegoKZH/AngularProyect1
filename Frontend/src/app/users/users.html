@@ -6,7 +6,7 @@
       <input name="email" required email [(ngModel)]="newEmail" #emailCtrl="ngModel" placeholder="email@ejemplo.com" />
       <input name="role" [(ngModel)]="newRole" placeholder="Rol (admin/user)" />
       <input name="password" [(ngModel)]="newPassword" placeholder="Contraseña" />
-      <button type="submit" class="btn">Crear usuario (POST)</button>
+      <button type="button" class="btn" (click)="create()">Crear usuario (POST)</button>
     </div>
     <div>
       <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched || createForm.submitted)" style="color:crimson;">
@@ -49,7 +49,7 @@
       </div>
 
       <div style="margin-top:8px;">
-        <button type="submit" class="btn">Guardar</button>
+        <button type="button" class="btn" (click)="saveEdit()">Guardar</button>
         <button type="button" (click)="cancelEdit()" class="btn ghost" style="margin-left:8px;">Cancelar</button>
       </div>
     </form>
