@@ -1,16 +1,151 @@
-<section class="dashboard">
-  <h2>Dashboard</h2>
-  <p *ngIf="user()">Bienvenido, <strong>{{ user()?.username }}</strong></p>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Usuarios</h3>
-      <p>Gestiona usuarios desde la sección Users.</p>
-      <a routerLink="/users">Ir a Users</a>
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="profile-dropdown-gf">
+      <div class="logo-box"><i class="fa-solid fa-g"></i></div>
+      <img src="https://ui-avatars.com/api/?name=Good+Food&background=FFD3B4" alt="avatar">
+      <span>GOODFOOD</span>
+      </div>
     </div>
-  </div>
 
-  <div style="margin-top:1rem">
-    <button (click)="logout()">Cerrar sesión</button>
-  </div>
-</section>
+    <nav class="menu-group">
+      <small>MENU</small>
+      <a class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      <a><i class="fa-solid fa-cart-shopping"></i> Food Order</a>
+      <a><i class="fa-solid fa-list-check"></i> Manage Menu</a>
+      <a><i class="fa-solid fa-comment-dots"></i> Customer Review</a>
+    </nav>
+
+    <nav class="menu-group">
+      <small>OTHERS</small>
+      <a><i class="fa-solid fa-gear"></i> Settings</a>
+      <a><i class="fa-solid fa-wallet"></i> Payment</a>
+      <a><i class="fa-solid fa-user-gear"></i> Accounts</a>
+      <a><i class="fa-solid fa-circle-question"></i> Help</a>
+    </nav>
+  </aside>
+
+  <main class="main-content" class="overflow-scroll">
+    <header class="top-nav">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search">
+      </div>
+
+      <div class="user-actions">
+        <div class="profile-dropdown" (click)="toggleProfile()">
+          <img src="https://ui-avatars.com/api/?name=Delicious+Burger&background=FFD3B4" alt="avatar">
+          <span class="user-name">Delicious Burger <i class="fa-solid fa-chevron-down"></i></span>
+          
+          <div class="dropdown-menu" [class.show]="isProfileOpen">
+            <button><i class="fa-solid fa-user"></i> Profile</button>
+            <button><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          </div>
+        </div>
+        <div class="notif-btn">
+          <i class="fa-solid fa-bell"></i>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="content-body">
+      <h2>Dashboard</h2>
+
+      <div class="grid-layout">
+        <div class="card revenue-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Revenue</p>
+              <h3>IDR 7.852.000</h3>
+              <span class="trend up"><i class="fa-solid fa-arrow-up"></i> 2.1% <small>vs last week</small></span>
+            </div>
+            <button class="btn-view">View Report</button>
+          </div>
+          <p class="subtitle">Sales from 1-12 Dec, 2020</p>
+          <apx-chart [series]="revenueChart.series" [chart]="revenueChart.chart" [xaxis]="revenueChart.xaxis" [plotOptions]="revenueChart.plotOptions" [dataLabels]="revenueChart.dataLabels" [legend]="revenueChart.legend"></apx-chart>
+        </div>
+
+        <div class="card donut-card">
+          <div class="card-header">
+            <div>
+              <h3>Order Time</h3>
+              <p class="subtitle" style="margin-top: 5px;">From 1-6 Dec, 2020</p>
+            </div>
+            <button class="btn-view">View Report</button>
+          </div>
+          
+          <div class="donut-container">
+            <apx-chart 
+              [series]="orderTimeChart.series" 
+              [chart]="orderTimeChart.chart" 
+              [labels]="orderTimeChart.labels" 
+              [colors]="orderTimeChart.colors" 
+              [plotOptions]="orderTimeChart.plotOptions" 
+              [dataLabels]="orderTimeChart.dataLabels"
+              [stroke]="orderTimeChart.stroke"
+              [tooltip]="orderTimeChart.tooltip"
+              [legend]="orderTimeChart.legend">
+            </apx-chart>
+          </div>
+
+          <div class="custom-legend">
+            <div class="legend-item">
+              <div class="legend-label"><span class="dot d-afternoon"></span> Afternoon</div>
+              <div class="legend-value">40%</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-label"><span class="dot d-evening"></span> Evening</div>
+              <div class="legend-value">32%</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-label"><span class="dot d-morning"></span> Morning</div>
+              <div class="legend-value">28%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card rating-card">
+          <h3>Your Rating</h3>
+          <p class="subtitle">Lorem ipsum dolor sit amet, consectetur</p>
+          <div class="bubbles-container">
+            <div class="bubble b-purple"><span>85%</span><small>Hygiene</small></div>
+            <div class="bubble b-orange"><span>85%</span><small>Food Taste</small></div>
+            <div class="bubble b-teal"><span>92%</span><small>Packaging</small></div>
+          </div>
+        </div>
+
+        <div class="card food-card">
+          <h3>Most Ordered Food</h3>
+          <p class="subtitle">Adipiscing elit, sed do eiusmod tempor</p>
+          <div class="food-list">
+            <div class="food-item">
+              <img src="https://cdn-icons-png.flaticon.com/128/2276/2276931.png" alt="food">
+              <div class="info"><span>Fresh Salad Bowl</span><small>IDR 45.000</small></div>
+            </div>
+            <div class="food-item">
+              <img src="https://cdn-icons-png.flaticon.com/128/1471/1471262.png" alt="food">
+              <div class="info"><span>Chicken Noodles</span><small>IDR 75.000</small></div>
+            </div>
+            <div class="food-item">
+              <img src="https://cdn-icons-png.flaticon.com/128/9425/9425763.png" alt="food">
+              <div class="info"><span>Smoothie Fruits</span><small>IDR 45.000</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card order-card">
+          <div class="card-header">
+            <div>
+              <p class="card-label">Order</p>
+              <h3>2.568</h3>
+              <span class="trend down"><i class="fa-solid fa-arrow-down"></i> 2.1% <small>vs last week</small></span>
+            </div>
+            <button class="btn-view">View Report</button>
+          </div>
+          <apx-chart [series]="orderChart.series" [chart]="orderChart.chart" [xaxis]="orderChart.xaxis" [stroke]="orderChart.stroke" [dataLabels]="orderChart.dataLabels"></apx-chart>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

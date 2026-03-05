@@ -244,3 +244,4 @@ C:\Users\LENOVO\Documents\Proyect\SUB-SUB-SUB\proyect1\Backend\obj\Debug\net10.0
 C:\Users\LENOVO\Documents\Proyect\SUB-SUB-SUB\proyect1\Backend\obj\Debug\net10.0\Proyect1.pdb
 C:\Users\LENOVO\Documents\Proyect\SUB-SUB-SUB\proyect1\Backend\obj\Debug\net10.0\Proyect1.genruntimeconfig.cache
 C:\Users\LENOVO\Documents\Proyect\SUB-SUB-SUB\proyect1\Backend\obj\Debug\net10.0\ref\Proyect1.dll
+C:\Users\LENOVO\Documents\Proyect\SUB-SUB-SUB\proyect1\Backend\bin\Debug\net10.0\BCrypt.Net-Next.dll

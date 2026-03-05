@@ -1,5 +1,206 @@
-.dashboard{max-width:800px;margin:1.5rem auto;padding:1rem}
-.cards{display:flex;gap:1rem}
-.card{flex:1;padding:1rem;border-radius:8px;border:1px solid #eee;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.03)}
-.card h3{margin:0 0 .5rem 0}
-.card a{color:#2b8cff;text-decoration:none}
+:root {
+    font-family: "Poppins", sans-serif;
+  --primary: #5b67f1;
+  --bg: #f8f9fd;
+  --text-main: #2a2a49;
+  --text-gray: #a2a2c2;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Segoe UI', sans-serif; }
+
+.dashboard-container { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: white;
+  padding: 30px 0;
+  border-right: 1px solid #f1f2f7;
+  position:sticky;
+}
+
+.logo {
+  display: flex;
+  align-items: left;
+  gap: 12px;
+  padding: 0 25px 0 10px;
+  margin-bottom: 50px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.logo-box {
+  background: var(--primary);
+  color: white;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.menu-group { display: flex; flex-direction: column; margin-bottom: 30px; }
+.menu-group small { padding: 0 25px; color: var(--text-gray); font-size: 11px; margin-bottom: 15px; }
+.menu-group a {
+  padding: 12px 25px;
+  color: var(--text-gray);
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-group a.active {
+  background: #f0f1ff;
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+  font-weight: 600;
+}
+
+.menu-group a i { margin-right: 10px; width: 20px; }
+
+/* Main Content */
+.main-content { flex: 1; padding: 0; }
+.top-nav {
+  background: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f2f7;
+}
+
+.search-bar { background: #f4f5f9; padding: 8px 15px; border-radius: 10px; width: 400px; display: flex; align-items: center; }
+.search-bar input { border: none; background: transparent; margin-left: 10px; outline: none; width: 100%; }
+.search-bar i { color: var(--text-gray); }
+
+.user-actions { display: flex; align-items: center; gap: 20px; }
+.profile-dropdown-gf { position: relative; display: flex ; align-items: center; gap: 10px; left: -15px;; }
+.profile-dropdown-gf img { width: 45px; border-radius: 50%; }
+
+.profile-dropdown { position: relative; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.profile-dropdown img { width: 35px; border-radius: 50%; }
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 10px;
+  display: none;
+  z-index: 100;
+  min-width: 150px;
+}
+.dropdown-menu.show { display: block; }
+.dropdown-menu button {
+  width: 100%; text-align: left; padding: 10px; border: none; background: none; cursor: pointer; color: var(--text-main);
+}
+.dropdown-menu button:hover { background: #f8f9fd; }
+
+/* Content Body */
+.content-body { padding: 30px 40px; }
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card { background: white; padding: 25px; border-radius: 15px; box-shadow: var(--card-shadow); border: 1px solid #f1f2f7; }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.subtitle { color: var(--text-gray); font-size: 13px; margin: 5px 0 15px; }
+
+.btn-view {
+  background: #f8f9fd; border: 1px solid #f1f2f7; color: var(--primary); 
+  padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px;
+}
+
+.trend { font-size: 18px; font-weight: 600; }
+.trend.up { color: #10b981; }
+.trend.down { color: #ef4444; }
+
+/* Bar Graphics */
+.revenue-card { 
+  grid-column: span 2; 
+}
+.donut-card,
+.rating-card,
+.food-card,
+.order-card {
+  grid-column: span 1;
+}
+/* Bubble Ratings */
+.bubbles-container { display: flex; position: relative; height: 160px; align-items: center; justify-content: center; }
+.bubble {
+  border-radius: 50%; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; color: white; position: absolute;
+}
+.bubble span { font-weight: bold; font-size: 20px; }
+.bubble small { font-size: 10px; }
+
+.b-purple { width: 100px; height: 100px; background: #8e99f3; left: 10%; z-index: 2; opacity: 0.9;}
+.b-orange { width: 130px; height: 130px; background: #ffb178; right: 15%; z-index: 1;}
+.b-teal { width: 90px; height: 90px; background: #55ced4; bottom: 0; left: 25%; z-index: 3;}
+
+/* Food List */
+.food-list { display: flex; flex-direction: column; gap: 15px; }
+.food-item { display: flex; align-items: center; gap: 25px; }
+.food-item img { width: 40px; height: 40px; border-radius: 10px; }
+.food-item .info span { display: block; font-weight: 600; font-size: 14px; }
+.food-item .info small { color: var(--text-gray); }
+
+/* Donut Tooltip Custom */
+/* --- Donut Card & Leyenda --- */
+.donut-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.donut-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 20px 0;
+}
+
+.custom-legend {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.legend-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4A4A68;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.legend-label .dot { width: 10px; height: 10px; border-radius: 50%; }
+.d-afternoon { background-color: #6B7AEE; }
+.d-evening { background-color: #929DF0; }
+.d-morning { background-color: #a9b4fff7; }
+
+.legend-value {
+  padding-left: 18px;
+  color: var(--text-gray);
+  font-size: 13px;
+}
+
+.donut-tooltip {
+  position: absolute; top: 10px; right: 10px; background: #2a2a49; 
+  color: white; padding: 15px; border-radius: 12px; font-size: 12px;
+}
+.donut-tooltip .orders { font-weight: bold; font-size: 16px; margin-top: 5px; }
+
